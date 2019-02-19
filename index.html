@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To Kill a Mockingbird</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <style>
+            * {
+                font-family: "Roboto Light", Helvetica, Arial;
+            }
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+            a {
+                color: rgb(50, 200, 200);
+                text-decoration: none;
+                font-family: "Roboto";
+            }
+            h1 {
+                font-family: "Roboto Medium", Helvetica, Arial;
+                font-size: 24pt;
+                margin: 0px;
+                text-align: center;
+                color: rgb(75, 75, 75);
+            }
+            h2 { /* Individual headers (not content headers) */
+                font-family: "Roboto", Helvetica, Arial;
+                font-size: 18pt;
+                margin: 0px;
+                color: rgb(25, 25, 25);
+                margin-bottom: -15px;
+            }
+            h3 {
+                font-family: "Roboto Light", Helvetica, Arial;
+                font-size: 12pt;
+                color: rgb(200, 200, 200);
+            }
+            p {
+                font-family: "Roboto Light", Helvetica, Arial;
+                font-size: 16pt;
+                color: rgb(0, 0, 0);
+            }
+            img {
+                margin-top: 20px;
+                margin-bottom: -10px;
+            }
+            .icon {
+                display: inline-block;
+                font-family: "Roboto Black", Helvetica, Arial;
+                font-size: 25px;
+                width: 50px;
+                height: 50px;
+                border: 1px solid rgba(200, 200, 200, 0.2);
+                border-radius: 50px;
+                padding: 20px 10px 0px 10px;
+                text-align: center;
+                color: rgb(100, 100, 100);
+            }
+            .icon-small {
+                display: inline-block;
+                font-family: "Roboto Black", Helvetica, Arial;
+                font-size: 12pt;
+                width: 15pt;
+                height: 15pt;
+                border: 1px solid rgba(200, 200, 200, 0.2);
+                border-radius: 15pt;
+                padding: 2pt 2pt 2pt 2pt;
+                text-align: center;
+                color: rgb(100, 100, 100);
+                margin-bottom: -5px;
+                position: relative;
+                top: -3px;
+            }
+            #header-full {
+                box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.5);
+            }
+            #header-full-title {
+                padding: 50px;
+                border-bottom: 1px solid rgba(240, 240, 240, 0.5);
+            }
+            #header-full-title-text {
+                display: inline;
+                padding: 15px;
+                font-family: "Roboto", Helvetica, Arial;
+                font-size: 18pt;
+            }
+            #header-full-links {
+                padding: 25px;
+                font-size: 14pt;
+                text-align: center;
+            }
+            .hfa {
+                display: inline-block;
+                padding: 0px;
+                margin: 0px 40px 0px 40px;
+            }
+            .hfaa {
+                color: rgb(175, 175, 175);
+            }
+            #header {
+                background-color: rgb(255, 255, 255);
+                display: none;
+                width: calc(100% - 40px);
+                position: fixed;
+                top: 0px;
+                z-index: 2;
+                font-family: "Roboto Medium", Helvetica, Arial;
+                box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.5);
+                padding: 15px 25px 15px 15px;
+                font-size: 16pt;
+            }
+            .hfab {
+                color: rgb(200, 200, 200);
+            }
+            @keyframes fall {
+                0% {
+                    transform: translateY(-110%);
+                }
+                100% {
+                    transform: translateY(0);
+                }
+            }
+            .header-fall {
+                animation: 1s ease 0s 1 fall;
+            }
+            @keyframes rise {
+                0% {
+                    transform: translateY(0);
+                }
+                100% {
+                    transform: translateY(-110%);
+                }
+            }
+            .header-rise {
+                animation: 1s ease 0s 1 rise;
+            }
+            .ha {
+                display: inline-block;
+                padding: 0px;
+                margin-left: 30px;
+            }
+            #content {
+                padding: 25px;
+            }
+            .content-section {
+                padding: 0px 10% 0px 10%;
+            }
+            .h1-container {
+                width: 100px;
+                margin: auto;
+                border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+                margin-bottom: 30px;
+            }
+            .h1-container-large {
+                width: 130px;
+                margin: auto;
+                border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+                margin-bottom: 30px;
+            }
+            .separator {
+                background-color: rgba(200, 200, 200, 0.5);
+                height: 1px;
+                margin: 20px 100px 20px 100px;
+            }
+            .split {
+                clear: both;
+                text-align: center;
+                color: rgb(100, 100, 100);
+                margin-bottom: 15px;
+            }
+            .split::before {
+                content: "• • •";
+            }
+            .quote {
+                width: 48%
+            }
+            .response {
+                float: right;
+                width: 48%;
+            }
+            .info-hide {
+                display: none;
+            }
+            .info-show {
+                display: block;
+                position: absolute;
+                z-index: 1;
+                margin: 5px 20px 0px 0px;
+                padding: 10px;
+                background-color: rgb(255, 255, 255);
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.5);
+            }
+            .info-in {
+                display: block;
+                position: absolute;
+                z-index: 1;
+                margin: 5px 20px 0px 0px;
+                padding: 10px;
+                background-color: rgb(255, 255, 255);
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.5);
+                animation: 0.5s ease 0s 1 in;
+            }
+            @keyframes in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            .info-out {
+                display: block;
+                position: absolute;
+                z-index: 1;
+                margin: 5px 20px 0px 0px;
+                padding: 10px;
+                background-color: rgb(255, 255, 255);
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.5);
+                animation: 0.5s ease 0s 1 out;
+            }
+            @keyframes out {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+            .spacer {
+                clear: both;
+                height: 10px;
+            }
+            #footer {
+                box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.5);
+                padding: 20px;
+            }
+            .right {
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header-full">
+            <div id="header-full-title">
+                <div class="icon">
+                    tkm
+                </div> <!-- .icon -->
+                <div id="header-full-title-text">
+                    To Kill a Mockingbird
+                </div> <!-- #header-full-title-text -->
+            </div> <!-- #header-full-title -->
+            <div id="header-full-links">
+                <div class="hfa">
+                    <a href="#quotes" class="hfaa">Quotes</a>
+                </div> <!-- .hfa -->
+
+            </div>
+        </div>
+        
+        <div id="header">
+            To Kill a Mockingbird
+            <div class="right">
+                <div class="ha">
+                    <a href="#quotes" class="hfab">Quotes</a>
+                </div> <!-- .ha -->
+
+            </div> <!-- .right -->
+        </div> <!-- #header -->
+        
+        <div id="content">
+            <div class="content-section">
+                <div class="h1-container">
+                    <h1 id="quotes">Quotes</h1>
+                </div> <!-- .h1-conainer -->
+                <div id="quotes-container"></div>
+            </div> <!-- #content-section -->
+        </div> <!-- #content -->
+
+        <div class="spacer"></div>
+
+        <div id="footer">
+            <h3 class="right">(I spent way to much time on this)</h3>
+            <h3>Webpage designed and built by Brandon Barham.<h3>
+        </div>
+        
+        <script>
+            var author = "Lee";
+            var quotes = [
+                [ // Chapter 1
+                    {
+                        quote: " - No Quote - ",
+                        page: "N/A",
+                        type: "-",
+                        response: " - None - "
+                    }
+                ], [ // Chapter 2
+                    {
+                        quote: "I rose graciously on Walter's behalf: 'Ah—Miss Caroline?' ",
+                        page: 26,
+                        type: "e",
+                        response: "The quote shows that Jean has the guts to stand up for a complete stranger, and outlines that she has a high level of bravery."
+                    }
+                ], [ // Chapter 3
+                    {
+                        quote: " 'You never really understand a person until you consider things from his point of view...' ",
+                        page: 39,
+                        type: "r",
+                        response: "The author is attempting to convey a strong message about how humans should see others. If we delve deeper into a person, it makes them easier to understand and often justifies their actions."
+                    }, {
+                        quote: "...Atticus said if I pay no attention to him, Jem would come down. Atticus was right.",
+                        page: 42,
+                        type: "c",
+                        response: "A personal connection I can make to the quote is that my parents are pretty much always right about things, similar to how Atticus is."
+                    }
+                ], [ // Chapter 4
+                    {
+                        quote: "Some tinfoil was sticking in a knot-hole just above my eye level, winking at me in the afternoon sun. I stood on tiptoe, hastily looked around once more, reached into the hole, and withdrew two pieces of chewing gum...",
+                        page: 44,
+                        type: "p",
+                        response: "I predict that this hole will end up having some significant importance."
+                    }, {
+                        quote: "Someone inside the [Radley] house was laughing.",
+                        page: 54,
+                        type: "q",
+                        response: "If their religion strictly forbids fun, then why are the laughing? Isn't the cause of the laughter a source of fun?"
+                    }
+                ], [ // Chapter 5
+                    {
+                        quote: "Some tinfoil was sticking in a knot-hole just above my eye level, winking at me in the afternoon sun. I stood on tiptoe, hastily looked around once more, reached into the hole, and withdrew two pieces of chewing gum...",
+                        page: 44,
+                        type: "p",
+                        response: "I predict that this hole will end up having some significant importance."
+                    }
+                ]
+            ];
+            for (var chapter = 0; chapter < quotes.length; chapter++) {
+                document.getElementById("quotes-container").innerHTML += "<h2>Chapter " + (chapter + 1) + "</h2>";
+                for (var i = 0; i < quotes[chapter].length; i++) {
+                    document.getElementById("quotes-container").innerHTML += "<p class = 'response " + quotes[chapter][i].type + "'>" + quotes[chapter][i].response + "</p><p class='quote'>\"" + quotes[chapter][i].quote + "\" (" + author + " " + quotes[chapter][i].page + ")</p><br style='clear: both;'>";
+                }
+                if (chapter < quotes.length - 1) {
+                    document.getElementById("quotes-container").innerHTML += "<div class='split'></div>";
+                }
+            }
+
+            var hide;
+            document.body.onscroll = function() {
+                if (document.documentElement.scrollTop > document.getElementById("header-full").offsetHeight) {
+                    clearTimeout(hide);
+                    document.getElementById("header").style.display = "block";
+                    document.getElementById("header").className = "header-fall";
+                } else {
+                    if (document.getElementById("header").style.display === "block") {
+                        document.getElementById("header").className = "header-rise";
+                        hide = setTimeout(function() {
+                            if (document.getElementById("header").className === "header-rise") { // safegaurd in case clearTimeout fails (which it does occasionally)
+                                document.getElementById("header").style.display = "none";
+                            }
+                        }, 800);
+                    }
+                }
+            };
+            var types = [
+                {
+                    short: "q",
+                    long: "Question",
+                    description: "Ask about something in the passage that is unclear"
+                }, {
+                    short: "c",
+                    long: "Connect",
+                    description: "Make a connection to your life, the world, or another text"
+                }, {
+                    short: "p",
+                    long: "Predict",
+                    description: "Anticipate what will occur based on what is in the passage"
+                }, {
+                    short: "cl",
+                    long: "Clarify",
+                    description: "Answer earlier questions or confirm / disaffirm a prediction"
+                }, {
+                    short: "e",
+                    long: "Evaluate",
+                    description: "Make a judgment about the character(s), their actions, or what the author is trying to say"
+                }, {
+                    short: "r",
+                    long: "Reflect",
+                    description: "Think deeply about what the passage means in a broad sense—not just to the characters. What conclusions can be drawn about the world, human nature, or the way things work?"
+                }
+            ];
+            var num = 0;
+            for (var type = 0; type < types.length; type++) {
+                for (var i = 0; i < document.getElementsByClassName(types[type].short).length; i++) {
+                    document.getElementsByClassName(types[type].short)[i].innerHTML = "<div id='icon" + num + "' class='icon-small'>" + types[type].short + "</div><div id='info" + num + "' class='info-hide'><h2>" + types[type].long + "</h2><p>" + types[type].description + "</p></div>&nbsp" + document.getElementsByClassName(types[type].short)[i].innerHTML;
+                    num++;
+                }
+            }
+            for (var i = 0; i < document.getElementsByClassName("icon-small").length; i++) {
+                document.getElementsByClassName("icon-small")[i].onmouseover = function() {
+                    document.getElementById("info" + this.id.split("icon")[1]).className = "info-in";
+                    var n = this.id.split("icon")[1];
+                    setTimeout(function() {
+                        document.getElementById("info" + n).className = "info-show";
+                    }, 500);
+                };
+                document.getElementsByClassName("icon-small")[i].onmouseout = function() {
+                    document.getElementById("info" + this.id.split("icon")[1]).className = "info-out";
+                    var n = this.id.split("icon")[1];
+                    setTimeout(function() {
+                        document.getElementById("info" + n).className = "info-hide";
+                    }, 450);
+                };
+            }
+        </script>
+    </body>
+</html>
